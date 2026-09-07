@@ -1,6 +1,6 @@
 # Atlas de nós · Termo infinito para Gabi
 
-Uma viagem pelo scroll: Rua Maruim (49010-160), em Aracaju → Rua 5 Norte (71907-720), em Brasília → nuvens → céu inspirado em A Noite Estrelada → Termo infinito.
+Uma viagem pelo scroll: , em Aracaju → , em Brasília → nuvens → céu inspirado em A Noite Estrelada → Termo infinito.
 
 O mapa começa nas ruas de Aracaju, afasta a câmera para acompanhar o percurso rodoviário e se aproxima de Águas Claras antes da subida. Os mapas e as fontes estão no projeto. O céu anima as próprias pinceladas de Van Gogh com um campo de redemoinhos em WebGL adaptado do Mediterranean Drift V3; não há dependências de mapas ou CDNs no navegador.
 
