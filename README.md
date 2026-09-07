@@ -1,59 +1,39 @@
-# TermoInfinityGabi
+# Atlas de nós · Termo infinito para Gabi
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+Uma viagem pelo scroll: Rua Maruim (49010-160), em Aracaju → Rua 5 Norte (71907-720), em Brasília → nuvens → céu inspirado em A Noite Estrelada → Termo infinito.
 
-## Development server
+O mapa começa nas ruas de Aracaju, afasta a câmera para acompanhar o percurso rodoviário e se aproxima de Águas Claras antes da subida. Os mapas e as fontes estão no projeto. O céu anima as próprias pinceladas de Van Gogh com um campo de redemoinhos em WebGL adaptado do Mediterranean Drift V3; não há dependências de mapas ou CDNs no navegador.
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Executar
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Abra `http://localhost:4200`. Use o scroll, deslize a tela no celular ou use **Ir ao jogo** para entrar diretamente. Se o ambiente não detectar alterações de arquivos, execute `npm start -- --poll 1000`.
 
 ```bash
-ng generate --help
+npm run build
+npm test -- --watch=false
 ```
 
-## Building
+## Jogo
 
-To build the project run:
+- Cinco letras e seis tentativas, sem limite de partidas. Qualquer combinação de cinco letras é aceita, mesmo fora do dicionário; acentos e cedilha são normalizados.
+- 1.241 respostas em português em `SOLUTIONS`, sem repetições e com cinco letras.
+- Modo carinho: uma dica revela a primeira letra sem consumir tentativa.
+- Cada vitória acende uma estrela; as primeiras 28 liberam 28 bilhetes únicos, um por vitória.
+- Partidas, dicas e estatísticas continuam salvas na chave existente `gabi-word-garden-v1`, preservando o progresso anterior.
+- Teclado físico e virtual. As teclas só entram na partida quando o tabuleiro está visível, e ficam suspensas com diálogos abertos.
+- Movimento reduzido respeitado; botão de pausa; scroll nativo; pintura local como fundo principal, com movimento localizado no céu em WebGL e retorno à reprodução estática em caso de falha. Animações param quando a aba fica oculta.
 
-```bash
-ng build
-```
+## Arquivos principais
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- `src/app/journey/`: câmera, mapas, etapas da viagem e animação da pintura.
+- `src/app/app.component.ts` e `src/app/app.html`: jogo, navegação e bilhetes.
+- `src/app/game.service.ts`: regras e persistência das tentativas livres.
+- `public/art/`: mapas SVG locais e pintura.
+- `THIRD_PARTY_NOTICES.md`: CodePens, mapas, endereços e créditos.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Os scripts Python usam somente a biblioteca padrão e recebem os snapshots JSON locais das fontes descritas nos créditos. O navegador não depende desses scripts nem precisa de uma chave de API.

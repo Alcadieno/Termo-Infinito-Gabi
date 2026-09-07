@@ -1,0 +1,52 @@
+<section class="journey" #chapter aria-label="Uma viagem da Rua Maruim, em Aracaju, à Rua 5 Norte, em Brasília, e ao céu estrelado">
+  <div class="journey-stage" [class.dark-stage]="phase() >= 3">
+    <div class="ground-scene" aria-hidden="true">
+      <svg #map class="neighborhood-map" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <defs><filter id="pin-shadow" x="-100%" y="-100%" width="300%" height="300%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#624e37" flood-opacity=".2"/></filter></defs>
+        <g #world [attr.transform]="initialWorld">
+          <image class="country-map" href="art/brasil-map.svg" width="2600" height="2500"/>
+          <image class="origin-map" href="art/aracaju-map.svg" x="1792.9" y="689.9" width="3.1" height="3.2"/>
+          <image class="destination-map" href="art/aguas-claras-map.svg" x="695.4" y="1181.9" width="5" height="3.913043"/>
+          <path vector-effect="non-scaling-stroke" class="route-ghost" [attr.d]="route"/>
+          <path vector-effect="non-scaling-stroke" class="route-shadow" [attr.d]="route"/>
+          <path #trail vector-effect="non-scaling-stroke" class="route-ink" [attr.d]="route"/>
+          <g #originPin class="origin-marker" [attr.transform]="'translate(' + origin.x + ' ' + origin.y + ') scale(.003)'">
+            <circle r="7" fill="#faf8ec" stroke="#b37957" stroke-width="3"/><text class="origin-label" x="-17" y="-19" text-anchor="end">ARACAJU · 49010-160</text>
+          </g>
+          <g #destinationPin class="destination-pin" [attr.transform]="'translate(' + destination.x + ' ' + destination.y + ') scale(.003)'">
+            <circle class="destination-ring" r="40"/><circle r="9" fill="#b6644b" stroke="#fff8e8" stroke-width="4"/>
+            <path d="M0 -13C-7 -22 -22 -34 -22 -47A22 22 0 1 1 22 -47C22 -34 7 -22 0 -13" fill="#b6644b" filter="url(#pin-shadow)"/>
+            <text x="0" y="-39" fill="#fff8ec" font-size="25" text-anchor="middle">♡</text>
+            <g transform="translate(31 -76)"><rect width="171" height="66" rx="5" fill="#fffcf2" filter="url(#pin-shadow)"/><text class="pin-label" x="15" y="24">ALGUÉM QUE VOCÊ PODE CONTAR</text><text class="pin-address" x="15" y="47"> ♡</text></g>
+          </g>
+          <g #traveler [attr.transform]="'translate(' + origin.x + ' ' + origin.y + ') scale(.003)'" filter="url(#pin-shadow)"><circle r="14" fill="#fffcf2"/><circle r="9" fill="#b66b50"/><circle r="3" fill="#fffcf2"/></g>
+        </g>
+      </svg>
+      <div class="map-wash"></div>
+    </div>
+    <div class="cloud-layer clouds-back" aria-hidden="true"></div><div class="cloud-layer clouds-front" aria-hidden="true"></div>
+
+    <div class="journey-copy intro-copy" [inert]="phase() !== 0">
+      <span class="chapter-label"><i></i> UMA VIAGEM FEITA PARA GABRIELA</span>
+      <h1>Do lugar que você ama<br>até o seu<br><em>infinito.</em></h1>
+      <p><br>Meu carinho sempre encontra um caminho até você.</p>
+      <div class="postmark"><span class="postmark-cross" aria-hidden="true">⊕</span><span> ARACAJU · SERGIPE<small>NOSSO PONTO DE PARTIDA</small></span><span class="postal-code">49010-160</span></div>
+      <button class="begin-journey" (click)="begin()">Vem comigo <span aria-hidden="true">↗</span></button>
+    </div>
+    <div class="journey-copy intercity-copy" [attr.aria-hidden]="phase() !== 1"><span class="chapter-label">01 / DO MEU ENDEREÇO AO SEU</span><h2>A saudade<br>atravessa<br><em>o mapa.</em></h2><p>Aracaju, Sergipe → Brasília, Distrito Federal.<br>Dois endereços. Um mesmo céu.</p><span class="route-distance">1.678 <small>km de vontade de te ver.</small></span></div>
+    <div class="journey-copy address-copy" [attr.aria-hidden]="phase() !== 2">
+      <span class="chapter-label">02 / O SEU DESTINO FAVORITO ?</span><h2>Estarei <br>sempre aqui<br><em>por você.</em></h2><p><br>Chegou? . Mas seu presente fica um pouco mais alto.</p><span class="handwritten">E sempre que puder irei encontrar você.</span>
+    </div>
+    <div class="journey-copy ascent-copy" [attr.aria-hidden]="phase() !== 3">
+      <span class="chapter-label">03 / DEIXA O MUNDO LÁ EMBAIXO</span><h2>Agora, olha<br><em>para cima.</em></h2><p>Tem um pedacinho do céu<br>que eu guardei só para você.</p><span class="ascent-star" aria-hidden="true">✧</span>
+    </div>
+    <div class="journey-copy arrival-copy" [inert]="phase() !== 4">
+      <span class="chapter-label">04 /O CEU QUE VOCÊ AMA</span><span class="arrival-spark" aria-hidden="true">✷</span><h2>Você, eu<br><em>e o infinito.</em></h2><p>O céu que você ama. O jogo que você adora.<br>E um pouquinho do meu amor em cada palavra.</p>
+    </div>
+
+    <div class="map-compass" [class.faded]="phase() >= 3" aria-hidden="true"><span>N</span><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23"/><path d="M30 8 35 34 30 30 25 34Z"/><path d="m30 52-5-26 5 4 5-4Z"/></svg></div>
+    <div class="journey-rail" aria-label="Etapas da viagem"><span class="rail-line"></span><button (click)="travelTo(0)" [class.current]="phase() < 2" aria-label="Voltar ao mapa"><span>01</span><i></i><small>ARACAJU</small></button><button (click)="travelTo(1)" [class.current]="phase() === 2 || phase() === 3" aria-label="Chegar a Brasília"><span>02</span><i></i><small>BRASÍLIA</small></button><button (click)="play.emit()" [class.current]="phase() === 4" aria-label="Ir ao jogo no céu"><span>03</span><i></i><small>INFINITO</small></button></div>
+    <div class="journey-bottom"><span class="journey-caption">{{ phase() < 3 ? 'ARACAJU → BRASÍLIA. UM CAMINHO DE AFETO.' : 'NÃO HÁ DISTÂNCIA PARA O QUE A GENTE SENTE.' }}</span><span class="scroll-cue"><span class="mouse-outline" aria-hidden="true"><i></i></span>{{ phase() === 4 ? 'CONTINUE ATÉ O NOSSO JOGO' : 'ROLE PARA SUBIR AO CÉU' }}<span aria-hidden="true">↓</span></span><span class="journey-counter">{{ percentage().toString().padStart(2, '0') }} <small>/ 100</small></span></div>
+    <a class="map-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" [hidden]="phase() >= 3">© OpenStreetMap · IBGE · OSRM</a>
+  </div>
+</section>

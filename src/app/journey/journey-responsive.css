@@ -1,0 +1,22 @@
+@media(max-width:600px){
+  .journey-copy{top:max(110px,16%)}
+  .journey-copy h2{font-size:clamp(46px,15vw,65px)}
+  .journey-copy p{font-size:13px}.chapter-label{line-height:1.8;flex-wrap:wrap}
+  .postmark{flex-wrap:wrap;row-gap:8px}.postal-code{white-space:nowrap}
+  .begin-journey,.arrival-button{min-height:44px;font-size:12px}
+  .ascent-copy,.arrival-copy{top:50%}.arrival-copy h2{font-size:clamp(52px,17vw,77px)}
+  .journey-rail{right:max(3px,env(safe-area-inset-right));gap:16px}
+  .journey-rail button{min-width:44px;min-height:44px;padding:8px;gap:8px}.rail-line{left:31px}
+  .journey-bottom{bottom:calc(32px + env(safe-area-inset-bottom))}.map-credit{bottom:calc(12px + env(safe-area-inset-bottom))}
+}
+@media(max-height:700px) and (max-width:600px){
+  .journey-copy{top:94px}.journey-copy h1{font-size:52px;margin:14px 0}.journey-copy h2{font-size:48px;margin:14px 0}
+  .postmark{margin-top:12px}.begin-journey{margin-top:8px}.ascent-copy,.arrival-copy{top:50%}
+}
+@media(max-height:500px) and (min-width:601px){
+  .journey-copy{top:80px;transform:none;max-width:70%}.journey-copy h1,.journey-copy h2{font-size:42px;margin:10px 0;letter-spacing:-1px}
+  .journey-copy p{font-size:11px;line-height:1.5}.postmark,.handwritten,.ascent-star,.arrival-spark{display:none}
+  .begin-journey,.arrival-button{margin-top:5px;min-height:44px;padding:6px 0}
+  .ascent-copy,.arrival-copy{top:50%;left:50%;transform:translate(-50%,-45%)}
+  .journey-bottom{bottom:18px}.map-credit{bottom:5px}.route-distance{font-size:25px;margin-top:10px}
+}
